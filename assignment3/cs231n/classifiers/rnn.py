@@ -143,8 +143,9 @@ class CaptioningRNN(object):
     captions_in_emb, emb_in_cache = word_embedding_forward(captions_in, W_embed)
     # (3) rnn forward
     if self.cell_type == 'rnn':
-        #TODO h0 = rnadom
         h, rnn_cache = rnn_forward(captions_in_emb, h0, Wx, Wh, b)
+    elif self.cell_type == 'lstm':
+        h, lstm_cache = lstm_forward(captions_in_emb, h0, Wx, Wh, b)
     # (4) hidden state to words
     temporal_out, temporal_cache = temporal_affine_forward(h, W_vocab, b_vocab)
     # (5) prediction and label, loss and gradients
@@ -154,6 +155,8 @@ class CaptioningRNN(object):
     dtemp, grads['W_vocab'], grads['b_vocab'] = temporal_affine_backward(dout, temporal_cache)
     if self.cell_type == 'rnn':
         drnn, dh0, grads['Wx'], grads['Wh'], grads['b'] = rnn_backward(dtemp, rnn_cache)
+    elif self.cell_type == 'lstm':
+        drnn, dh0, grads['Wx'], grads['Wh'], grads['b'] = lstm_backward(dtemp, lstm_cache)
     grads['W_embed'] = word_embedding_backward(drnn, emb_in_cache)
     dfeatures, grads['W_proj'], grads['b_proj'] = affine_backward(dh0, features_cache)
     ############################################################################
@@ -219,6 +222,8 @@ class CaptioningRNN(object):
     ###########################################################################
     pass
     prev_h, _ = affine_forward(features, W_proj, b_proj) # using image features as h0
+    if self.cell_type == 'lstm':
+        prev_c = np.zeros_like(prev_h)
     x = np.array([self._start for i in range(N)])
     captions[:, 0] = self._start
     for t in range(1, max_length):
@@ -226,6 +231,9 @@ class CaptioningRNN(object):
         if self.cell_type == 'rnn':
             next_h, cache = rnn_step_forward(x_emb, prev_h, Wx, Wh, b)
             prev_h = next_h
+        elif self.cell_type == 'lstm':
+            next_h, next_c, cache = lstm_step_forward(x_emb, prev_h, prev_c, Wx, Wh, b)
+            prev_h, prev_c = next_h, next_c
         vocab_out, vocab_cache = affine_forward(next_h, W_vocab, b_vocab)
         x = vocab_out.argmax(1)
         captions[:, t] = x
