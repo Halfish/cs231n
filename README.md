@@ -1,4 +1,4 @@
-# CS231n Convolutional Neural Networks for Visual Recognition
+## CS231n Convolutional Neural Networks for Visual Recognition
 
 斯坦福 cs231n 作业代码实践，
 
@@ -10,7 +10,7 @@
 
 上面的网页有时候不稳定，可能要 FQ 才能访问。
 
-网上有很多的资料，包括 notes 中文翻译，课程视频，PPT，参考文论等，但是个人觉得都不如直接完成课程的作业代码来的收获大。说再多，看再多不如亲手实践一下。
+网上有很多的资料，包括 notes 的中文翻译，课程视频，PPT，参考文论等，但是个人觉得都不如直接完成课程的作业代码来的收获大。
 
 ---
 
