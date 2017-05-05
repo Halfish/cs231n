@@ -10,8 +10,8 @@
 
 下载课程作业源代码:  [Assignment #1](http://cs231n.stanford.edu/assignments/2016/winter1516_assignment1.zip) & [Assignment #2](http://cs231n.stanford.edu/assignments/2016/winter1516_assignment2.zip) & [Assignment #3](http://cs231n.stanford.edu/assignments/2016/winter1516_assignment3.zip)
 
-网上有很多的资料，包括 notes 的中文翻译，课程视频，PPT，参考文论等，但是个人觉得都不如直接完成课程的作业收获大。
+网上有很多的[资料](http://blog.csdn.net/zhangxb35/article/details/55223825)，包括中文翻译，课程视频等，但是个人觉得都不如写完作业代码的收获大。
 
 ---
 
-参考我完成这个作业时的个人笔记与总结： [cs231n 课程作业](http://blog.csdn.net/zhangxb35/article/category/6727687)
+CSDN博客笔记： [cs231n 课程作业](http://blog.csdn.net/zhangxb35/article/category/6727687)
