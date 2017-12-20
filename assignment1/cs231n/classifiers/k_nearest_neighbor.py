@@ -127,6 +127,7 @@ class KNearestNeighbor(object):
     dists += np.sum(self.X_train ** 2, axis=1).reshape(1, num_train)
     dists += np.sum(X ** 2, axis=1).reshape(num_test, 1) # reshape for broadcasting
     dists -= 2 * np.dot(X, self.X_train.T)
+    dists = np.sqrt(dists)
     #########################################################################
     #                         END OF YOUR CODE                              #
     #########################################################################
