@@ -72,7 +72,7 @@ class KNearestNeighbor(object):
         # not use a loop over dimension.                                    #
         #####################################################################
         pass
-        dists[i][j] = np.sum((X[i] - self.X_train[j]) ** 2)
+        dists[i][j] = np.sqrt(np.sum((X[i] - self.X_train[j]) ** 2))
         #####################################################################
         #                       END OF YOUR CODE                            #
         #####################################################################
@@ -95,7 +95,7 @@ class KNearestNeighbor(object):
       # points, and store the result in dists[i, :].                        #
       #######################################################################
       pass
-      dists[i] = np.sum((self.X_train - X[i]) ** 2, 1)
+      dists[i] = np.sqrt(np.sum((self.X_train - X[i]) ** 2, 1))
       #######################################################################
       #                         END OF YOUR CODE                            #
       #######################################################################
